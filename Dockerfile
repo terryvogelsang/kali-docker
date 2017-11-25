@@ -1,8 +1,10 @@
-FROM kalilinux/kali-linux-docker
-LABEL maintainer="tv0g"
+FROM kalilinux/kali-linux-docker:latest
+LABEL maintainer="Terry Vogelsang"
 
-RUN echo "deb http://http.kali.org/kali kali-rolling main contrib non-free" > /etc/apt/sources.list && \
-echo "deb-src http://http.kali.org/kali kali-rolling main contrib non-free" >> /etc/apt/sources.list
+RUN apt-get update && apt-get install -y \
+    git \
+    curl \
+    kali-linux-web \
+&& apt-get clean all
 
-RUN apt-get -y update && apt-get -y dist-upgrade && apt-get clean
 CMD ["/bin/bash"]
